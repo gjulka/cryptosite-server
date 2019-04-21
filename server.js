@@ -35,13 +35,6 @@ app.get('/', (req, res) => {
 app.use('/auth', auth)
 app.use('/userscoins', userscoins)
 
-if (process.env.NODE_ENV === 'production') {
-    app.use(express.static('client/build'))
-    app.get('*', (req, res) => {
-        res.sendfile(path.resolve(__dirname, 'client', 'build', 'index.html'))
-    })
-}
-
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
