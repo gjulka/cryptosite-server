@@ -60,12 +60,13 @@ router.post('/', (req, res, next) => {
 
 
 router.post('/delete', (req, res, next) => {
-    
-        Coins.find({
-            ID: req.body.ID
-        }).then(result => {
-            console.log(result);
-        })
+    Coins.findByIdAndDelete(req.body.ID)
+    .then(result => {
+
+    })
+    .catch(err => {
+        console.log(err);
+    })
 })
 
 module.exports = router;
