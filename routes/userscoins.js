@@ -56,7 +56,16 @@ router.post('/', (req, res, next) => {
         res.status(422)
         next(error)
     }
+})
+
+
+router.post('/delete', (req, res, next) => {
     
+        Coins.find({
+            ID: req.body.ID
+        }).then(result => {
+            console.log(result);
+        })
 })
 
 module.exports = router;
