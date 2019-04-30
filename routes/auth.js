@@ -12,6 +12,10 @@ const schema = Joi.object().keys({
     password: Joi.string().min(8).required().trim()
 });
 
+const usernameSchema = Joi.object().keys({
+    username: Joi.string().regex(/(^[a-zA-Z0-9_]+$)/).min(2).max(30).required(),
+});
+
 function error422(res, next) {
     const error = new Error('Unable to login.')
     res.status(422)
@@ -95,6 +99,16 @@ router.post('/login', (req, res, next) => {
         })
     } else {
         error422(res, next)
+    }
+})
+
+//update existing username
+
+//this is wrong..partially, when user clicks edit button, u should look for the ID associated with this account. 
+router.post('/update', (req, res, next) => {
+    const result = Joi.validate(req.body, usernameSchema)
+    if (result.error === null) {
+    
     }
 })
 
